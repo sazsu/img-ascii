@@ -13,7 +13,6 @@ def convert_to_grayscale(file_in):
 
 
 def get_average_of_tile(im):
-    im
     width, height = im.size
     values = []
 
