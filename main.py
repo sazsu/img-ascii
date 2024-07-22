@@ -1,5 +1,6 @@
 from PIL import ImageOps, Image
 
+
 GS_SYMBOLS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
 
 
@@ -44,3 +45,4 @@ def create_ascii_art(file_in, file_out='out.txt', cols=None, scale=0.5):
         res.append('\n')
     
     return ''.join(res)
+
