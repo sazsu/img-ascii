@@ -35,14 +35,14 @@ def create_ascii_art(file_in, file_out='out.txt', cols=None, scale=0.5):
 
     rows = int(height / height_tile)
 
-    res = []  # list to store ascii art symbols
-    for y in range(rows):
-        for x in range(cols):
-            x1, y1, x2, y2 = x * width_tile, y * height_tile, (x + 1) * width_tile, (y + 1) * height_tile
-            cropped_im = im.crop((x1, y1, x2, y2))  # get image tile
-            avg_val = get_average_of_tile(cropped_im)
-            res.append(GS_SYMBOLS[avg_val * 69 // 255])  # get ascii symbol
-        res.append('\n')
+    with open(file_out, 'w') as f:
+        for y in range(rows):
+            for x in range(cols):
+                x1, y1, x2, y2 = x * width_tile, y * height_tile, (x + 1) * width_tile, (y + 1) * height_tile
+                cropped_im = im.crop((x1, y1, x2, y2))  # get image tile
+                avg_val = get_average_of_tile(cropped_im)
+                f.write(GS_SYMBOLS[avg_val * 69 // 255])  # get ascii symbol
+            f.write('\n')
     
-    return ''.join(res)
+    return 'Done'
 
