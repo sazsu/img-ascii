@@ -10,7 +10,7 @@ def main():
         print('No input file specified')
         return
 
-    output_file = input('Name of output file to write ascii art to (default is out.txt): ').strip()
+    output_file = input('Name of output file to write ASCII art to (default is out.txt): ').strip()
     cols = input('Width of ASCII art (default is width of image after conversion): ').strip()
     scale = input('Scale of your font (default is 0.5): ').strip()
     
@@ -25,3 +25,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
