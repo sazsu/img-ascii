@@ -1,48 +1,27 @@
-from PIL import ImageOps, Image
+from scripts.create_art import create_art
+from logo import LOGO
 
 
-GS_SYMBOLS = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
+def main():
+    print(LOGO)
 
+    input_file = input('Name of input image (if left blank program terminates): ').strip()
+    if not input_file:
+        print('No input file specified')
+        return
 
-def convert_to_grayscale(file_in):
-    im = Image.open(file_in)
-
-    gray_im = ImageOps.grayscale(im)
-    gray_im.thumbnail((400, 400))  # resize image
+    output_file = input('Name of output file to write ascii art to (default is out.txt): ').strip()
+    cols = input('Width of ASCII art (default is width of image after conversion): ').strip()
+    scale = input('Scale of your font (default is 0.5): ').strip()
     
-    return gray_im
+    # set default values if not provided
+    output_file = output_file if output_file else 'out.txt'
+    cols = int(cols) if cols else None
+    scale = float(scale) if scale else 0.5
+
+    print(create_art(input_file, output_file, cols, scale))
+    return
 
 
-def get_average_of_tile(im):
-    width, height = im.size
-    values = []
-
-    for x in range(width):
-        for y in range(height):
-            values.append(im.getpixel((x, y)))
-
-    return sum(values) // len(values)
-
-
-def create_ascii_art(file_in, file_out='out.txt', cols=None, scale=0.5):
-    im = convert_to_grayscale(file_in)
-    width, height = im.size
-    cols = cols if cols else width
-
-    # calculate width and height of tile
-    width_tile = width / cols
-    height_tile = width_tile / scale
-
-    rows = int(height / height_tile)
-
-    with open(file_out, 'w') as f:
-        for y in range(rows):
-            for x in range(cols):
-                x1, y1, x2, y2 = x * width_tile, y * height_tile, (x + 1) * width_tile, (y + 1) * height_tile
-                cropped_im = im.crop((x1, y1, x2, y2))  # get image tile
-                avg_val = get_average_of_tile(cropped_im)
-                f.write(GS_SYMBOLS[avg_val * 69 // 255])  # get ascii symbol
-            f.write('\n')
-    
-    return 'Done'
-
+if __name__ == "__main__":
+    main()

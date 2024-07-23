@@ -1,3 +1,6 @@
+from PIL import Image, ImageOps
+
+
 def convert(file_in):
     im = Image.open(file_in)
 
