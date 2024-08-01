@@ -16,14 +16,18 @@ def create_art(file_in, file_out, cols, scale):
 
     rows = int(height / height_tile)
 
-    with open(file_out, 'w') as f:
+    with open(file_out, "w") as f:
         for y in range(rows):
             for x in range(cols):
-                x1, y1, x2, y2 = x * width_tile, y * height_tile, (x + 1) * width_tile, (y + 1) * height_tile
+                x1, y1, x2, y2 = (
+                    x * width_tile,
+                    y * height_tile,
+                    (x + 1) * width_tile,
+                    (y + 1) * height_tile,
+                )
                 cropped_im = im.crop((x1, y1, x2, y2))  # get image tile
                 avg_val = get_average(cropped_im)
                 f.write(GS_SYMBOLS[avg_val * 69 // 255])  # get ascii symbol
-            f.write('\n')
-    
-    return f'ASCII art created in {file_out}'
+            f.write("\n")
 
+    return f"ASCII art created in {file_out}"
