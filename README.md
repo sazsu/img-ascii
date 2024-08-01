@@ -1,21 +1,15 @@
 # Quick start
 
-1. Clone repo
 ```
-git clone git@github.com:sazsu/img-ascii.git
-```
+# Clone this repo
+$ git clone git@github.com:sazsu/img-ascii.git
 
-2. Change directory
-```
-cd img-ascii
-```
+# Go into repo's directory
+$ cd img-ascii
 
-3. Install dependencies
-```
-pip install -r requirements.txt
-```
+# Install dependencies
+$ pip install -r requirements.txt
 
-4. Run script
-```
-python main.py
+# Run script (run python main.py -h for help)
+$ python main.py [-h] -i INPUT [-o OUTPUT] [-c COLS] [-s SCALE]
 ```
