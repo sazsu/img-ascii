@@ -7,4 +7,3 @@ def get_average(im):
             values.append(im.getpixel((x, y)))
 
     return sum(values) // len(values)
-
