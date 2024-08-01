@@ -1,5 +1,6 @@
 from scripts.create_art import create_art
 from logo import LOGO
+import argparse
 
 
 def main():
@@ -24,5 +25,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-
+    parser = argparse.ArgumentParser(description='Convert image to ASCII art.')
+    parser.add_argument('-i',
+    '--in', type=str, required=True, help='name of input image')
+    parser.add_argument('-o', '--out', type=str, default='out.txt', required=True, help='name of output file (default: out.txt)')
+    parser.add_argument('-c', '--cols', type=int, default=None, required=False, help='integer width of desired art (default: width of input image)')
+    parser.add_argument('-s', '--scale', type=float, default=0.5, required=False, help='float scale of your font (default: 0.5)')
